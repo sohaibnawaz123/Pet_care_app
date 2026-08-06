@@ -7,6 +7,11 @@ class AppColor {
   factory AppColor() {
     return _instance;
   }
+  //apps Colores
+  static const Color appPrimary = Color(0xFFE7B88B);
+  static const Color appButton = Color(0xFFF0D4B9);
+  static const Color appBackground = Color(0xFFFBF4ED);
+
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
@@ -20,14 +25,15 @@ class AppColor {
 
   // >>>>>>>>>>>>>>>>>>>>>>> Text <<<<<<<<<<<<<<<<<<<<<<<
 
-  static const Color primaryText = Color(0xFFF5F5F5);
-  static const Color secondaryText = Color(0xFFB0BEC5);
-  static const Color headingText = Color(0xFF90A4AE);
-  static const Color highlightText = Color(0xFFB0BEC5);
-  static const Color baseText = Color(0xFFB0BEC5);
+  static const Color primaryText = Color(0xFF252525);
+  static const Color secondaryText = Color(0xFF5A6981);
+  static const Color headingText = Color(0xFF252525);
+  static const Color highlightText = Color(0xFF000000);
+  static const Color baseText = Color(0xFF36454F);
 
   static const Color disabledText = Color(0xFF90A4AE);
   static const Color errorText = Color(0xFFD32F2F);
+  static const Color success = Color(0xFF34C759);
 
   static const Gradient iconBgGradient = LinearGradient(
     colors: [Color(0xff3BB3E4), Color(0xff268DE3)],
