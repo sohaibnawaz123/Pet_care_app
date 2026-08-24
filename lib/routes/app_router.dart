@@ -4,7 +4,7 @@ import 'package:pet_care_app/routes/app_routes.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutePaths.login,
+    initialLocation: AppRoutePaths.roleselection,
     routes: appRoutes,
   );
 }

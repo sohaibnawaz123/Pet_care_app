@@ -3,6 +3,15 @@ import 'package:get_it/get_it.dart';
 import 'package:pet_care_app/main.dart';
 import 'package:pet_care_app/core/constant/app_url.dart';
 import 'package:pet_care_app/core/network/network_service.dart';
+
+import 'package:pet_care_app/modules/auth/data/datasource/roleselection_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/roleselection_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/roleselection_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/roleselection_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/roleselection_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/roleselection/roleselection_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/roleselection_view_initial_params.dart';
+
 import 'package:pet_care_app/modules/auth/data/datasource/login_remote_data_source.dart';
 import 'package:pet_care_app/modules/auth/data/datasource/login_remote_data_source_impl.dart';
 import 'package:pet_care_app/modules/auth/data/rest_api/login_rest_api_repo.dart';
@@ -19,6 +28,33 @@ void getInstance(BuildContext context) {
   }
   if (!getIt.isRegistered<AppUrl>()) {
     getIt.registerSingleton<AppUrl>(AppUrl());
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Roleselection  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<RoleselectionRemoteDataSource>()) {
+    getIt.registerSingleton<RoleselectionRemoteDataSource>(
+      RoleselectionRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<RoleselectionRepo>()) {
+    getIt.registerSingleton<RoleselectionRepo>(
+      RoleselectionRestApiRepo(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<RoleselectionUseCase>()) {
+    getIt.registerSingleton<RoleselectionUseCase>(
+      RoleselectionUseCase(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<RoleselectionBloc>()) {
+    getIt.registerFactoryParam<
+      RoleselectionBloc,
+      RoleselectionViewInitialParams,
+      dynamic
+    >((params, _) => RoleselectionBloc(params, getIt()));
   }
 
   // <<<<<<<<<<<<<<<<<<<<<<<  Login  >>>>>>>>>>>>>>>>>>>>>>>

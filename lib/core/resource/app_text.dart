@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pet_care_app/core/utils/extension/app_font_weight.dart';
 
-
 class AppText {
   AppText._internal()
-    : _baseTextStyle = GoogleFonts.archivo(
+    : _baseTextStyle = GoogleFonts.lato(
         fontWeight: AppFontWeight.regular,
         // letterSpacing: -0.8,
         height: 1.2,
       ),
-      _secondaryTextStyle = GoogleFonts.anton(
+      _secondaryTextStyle = GoogleFonts.lato(
         fontWeight: AppFontWeight.regular,
         letterSpacing: -0.5,
         height: 1.1,
@@ -30,13 +29,17 @@ class AppText {
     fontWeight: AppFontWeight.medium,
   );
   TextStyle get headingText =>
-      _baseTextStyle.copyWith(fontSize: 18, fontWeight: AppFontWeight.bold);
+      _baseTextStyle.copyWith(fontSize: 24, fontWeight: AppFontWeight.bold);
   TextStyle get subHeadingText =>
-      _baseTextStyle.copyWith(fontSize: 18, fontWeight: AppFontWeight.semiBold);
-
+      _baseTextStyle.copyWith(fontSize: 20, fontWeight: AppFontWeight.semiBold);
   TextStyle get bodyText =>
-      _baseTextStyle.copyWith(fontSize: 18, fontWeight: AppFontWeight.medium);
+      _baseTextStyle.copyWith(fontSize: 16, fontWeight: AppFontWeight.medium);
 
   TextStyle get lightText =>
-      _baseTextStyle.copyWith(fontSize: 14, fontWeight: AppFontWeight.light);
+      _baseTextStyle.copyWith(fontSize: 14, fontWeight: AppFontWeight.regular);
+  TextStyle get smallText =>
+      _baseTextStyle.copyWith(fontSize: 12, fontWeight: AppFontWeight.regular);
+
+  TextStyle get extraLightText =>
+      _baseTextStyle.copyWith(fontSize: 12, fontWeight: AppFontWeight.light);
 }
