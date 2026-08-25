@@ -1,3 +1,1 @@
-import 'package:pet_care_app/modules/auth/presentation/routes/roleselection_route.dart';
 
-  RoleselectionRoute.route,

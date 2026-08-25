@@ -1,14 +1,14 @@
 import 'package:pet_care_app/modules/app/domain/entitties/user_role.dart';
 
-class LoginViewInitialParams {
+class AuthselectionViewInitialParams {
   final UserRole? role;
-  const LoginViewInitialParams({this.role});
+  const AuthselectionViewInitialParams({this.role});
 
-  factory LoginViewInitialParams.fromUri(Uri uri) {
+  factory AuthselectionViewInitialParams.fromUri(Uri uri) {
     final roleValue = uri.queryParameters['role'];
-    return LoginViewInitialParams(
+
+    return AuthselectionViewInitialParams(
       role: roleValue == null ? null : userRoleFromJson(roleValue),
-      // Parse the URI parameters as needed
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pet_care_app/component/button/app_button.dart';
 import 'package:pet_care_app/component/image/app_network_image.dart';
 import 'package:pet_care_app/core/resource/app_asset.dart';
@@ -8,7 +9,9 @@ import 'package:pet_care_app/core/resource/app_color.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
+import 'package:pet_care_app/modules/app/domain/entitties/user_role.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/roleselection/roleselection_bloc.dart';
+import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class RoleselectionView extends StatefulWidget {
   final RoleselectionBloc bloc;
@@ -212,7 +215,6 @@ class _RoleselectionViewState extends State<RoleselectionView>
                       assetPath: AppAsset.logo,
                       size: double.infinity,
                     ),
-                    // SizedBox(height: context.mHeight * 0.08),
                     AnimatedBuilder(
                       animation: progressController,
                       builder: (context, child) {
@@ -285,6 +287,10 @@ class _RoleselectionViewState extends State<RoleselectionView>
                       SlideTransition(
                         position: buttonAnimation,
                         child: AppButton(
+                          onTap: () => context.pushNamed(
+                            AppRouteNames.authselection,
+                            queryParameters: {'role': UserRole.petSitter.value},
+                          ),
                           title: 'I\'m a Pet Sitter',
                           width: double.infinity,
                           height: 50,
@@ -298,11 +304,14 @@ class _RoleselectionViewState extends State<RoleselectionView>
                       SlideTransition(
                         position: buttonAnimation,
                         child: AppButton.textButton(
+                          onTap: () => context.pushNamed(
+                            AppRouteNames.authselection,
+                            queryParameters: {'role': UserRole.petOwner.value},
+                          ),
                           title: 'I\'m a Pet Owner',
                           width: double.infinity,
                           height: 50,
                           fontColor: AppColor.black,
-                          // border: BorderSide(color: AppColor.black),
                           buttonColor: AppColor.secondary,
                           radius: 24,
                         ),

@@ -6,7 +6,7 @@ import 'package:pet_care_app/modules/auth/presentation/views/roleselection_view.
 import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class RoleselectionRoute {
-  static const String name = AppRoutePaths.roleselection;
+  static const String name = AppRouteNames.roleselection;
   static const String path = AppRoutePaths.roleselection;
 
   static GoRoute get route => GoRoute(

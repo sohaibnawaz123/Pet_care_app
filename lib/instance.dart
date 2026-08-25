@@ -12,6 +12,14 @@ import 'package:pet_care_app/modules/auth/domain/usecase/roleselection_use_case.
 import 'package:pet_care_app/modules/auth/presentation/blocs/roleselection/roleselection_bloc.dart';
 import 'package:pet_care_app/modules/auth/presentation/routes/roleselection_view_initial_params.dart';
 
+import 'package:pet_care_app/modules/auth/data/datasource/authselection_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/authselection_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/authselection_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/authselection_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/authselection_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/authselection/authselection_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/authselection_view_initial_params.dart';
+
 import 'package:pet_care_app/modules/auth/data/datasource/login_remote_data_source.dart';
 import 'package:pet_care_app/modules/auth/data/datasource/login_remote_data_source_impl.dart';
 import 'package:pet_care_app/modules/auth/data/rest_api/login_rest_api_repo.dart';
@@ -55,6 +63,33 @@ void getInstance(BuildContext context) {
       RoleselectionViewInitialParams,
       dynamic
     >((params, _) => RoleselectionBloc(params, getIt()));
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Authselection  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<AuthselectionRemoteDataSource>()) {
+    getIt.registerSingleton<AuthselectionRemoteDataSource>(
+      AuthselectionRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<AuthselectionRepo>()) {
+    getIt.registerSingleton<AuthselectionRepo>(
+      AuthselectionRestApiRepo(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<AuthselectionUseCase>()) {
+    getIt.registerSingleton<AuthselectionUseCase>(
+      AuthselectionUseCase(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<AuthselectionBloc>()) {
+    getIt.registerFactoryParam<
+      AuthselectionBloc,
+      AuthselectionViewInitialParams,
+      dynamic
+    >((params, _) => AuthselectionBloc(params, getIt()));
   }
 
   // <<<<<<<<<<<<<<<<<<<<<<<  Login  >>>>>>>>>>>>>>>>>>>>>>>

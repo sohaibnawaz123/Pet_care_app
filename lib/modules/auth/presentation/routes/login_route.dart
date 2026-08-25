@@ -6,7 +6,7 @@ import 'package:pet_care_app/modules/auth/presentation/views/login_view.dart';
 import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class LoginRoute {
-  static const String name = 'auth_login';
+  static const String name = AppRouteNames.login;
   static const String path = AppRoutePaths.login;
 
   static GoRoute get route => GoRoute(

@@ -2,6 +2,7 @@ enum UserRole {
   admin,
   doctor,
   petOwner,
+  petSitter,
   unknown,
 }
 
@@ -14,6 +15,8 @@ extension UserRoleX on UserRole {
         return 'doctor';
       case UserRole.petOwner:
         return 'petOwner';
+      case UserRole.petSitter:
+        return 'petSitter';
       case UserRole.unknown:
         return 'unknown';
     }
@@ -32,6 +35,10 @@ UserRole userRoleFromJson(dynamic value) {
     case 'pet_owner':
     case 'pet-owner':
       return UserRole.petOwner;
+    case 'petsitter':
+    case 'pet_sitter':
+    case 'pet-sitter':
+      return UserRole.petSitter;
     default:
       return UserRole.unknown;
   }
