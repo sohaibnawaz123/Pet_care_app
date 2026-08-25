@@ -292,8 +292,8 @@ class AppButton extends StatelessWidget {
       height: iconSize?.h,
       width: iconSize?.w,
       fit: BoxFit.contain,
-      theme: SvgTheme(currentColor: fontColor, xHeight: 10.h),
-      colorFilter: ColorFilter.mode(fontColor, BlendMode.srcIn),
+      // theme: SvgTheme(currentColor: fontColor, xHeight: 10.h),
+      // colorFilter: ColorFilter.mode(fontColor, BlendMode.srcIn),
     );
   }
 

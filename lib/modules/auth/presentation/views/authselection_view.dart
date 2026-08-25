@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_care_app/component/button/app_button.dart';
 import 'package:pet_care_app/component/image/app_network_image.dart';
+import 'package:pet_care_app/component/text/content.dart';
 import 'package:pet_care_app/core/resource/app_asset.dart';
 import 'package:pet_care_app/core/resource/app_color.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
@@ -154,13 +155,14 @@ class _AuthselectionViewState extends State<AuthselectionView>
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      'To find the best pet sitters in town and ensure exceptional care for your pets',
-                      style: context.lightText.copyWith(
+                    Content(
+                      data:'To find the best pet sitters in town and ensure exceptional care for your pets',
+                      textStyle: context.lightText.copyWith(
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
                         color: AppColor.black.withValues(alpha: 0.6),
                       ),
+                      alignment: TextAlign.center,
                     ),
                     const SizedBox(height: 24),
                     AppButton.textButton(
@@ -208,6 +210,19 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 12),
                     AppButton.iconWithText(
+                      title: 'Sign up with Google',
+                      radius: 24,
+                      iconPath: AppAsset.google,
+                      width: double.infinity,
+                      height: 50,
+                      fontSize: 16,
+                      fontColor: AppColor.black,
+                      onTap: () {},
+                      borderColor: AppColor.black,
+                      buttonColor: Colors.transparent,
+                    ),
+                    const SizedBox(height: 16),
+                    AppButton.iconWithText(
                       title: 'Sign up with Facebook',
                       radius: 24,
                       iconPath: AppAsset.facebook,
@@ -220,19 +235,6 @@ class _AuthselectionViewState extends State<AuthselectionView>
                       buttonColor: Colors.transparent,
                     ),
                     const SizedBox(height: 12),
-                    AppButton.iconWithText(
-                      title: 'Sign up with Google',
-                      radius: 24,
-                      iconPath: AppAsset.facebook,
-                      width: double.infinity,
-                      height: 50,
-                      fontSize: 16,
-                      fontColor: AppColor.black,
-                      onTap: () {},
-                      borderColor: AppColor.black,
-                      buttonColor: Colors.transparent,
-                    ),
-                    const SizedBox(height: 16),
                     GestureDetector(
                       onTap: () => context.pushNamed(AppRouteNames.login),
                       child: Text.rich(
