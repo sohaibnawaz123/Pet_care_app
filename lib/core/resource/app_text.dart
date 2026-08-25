@@ -31,7 +31,7 @@ class AppText {
   TextStyle get headingText =>
       _baseTextStyle.copyWith(fontSize: 24, fontWeight: AppFontWeight.bold);
   TextStyle get subHeadingText =>
-      _baseTextStyle.copyWith(fontSize: 20, fontWeight: AppFontWeight.semiBold);
+      _baseTextStyle.copyWith(fontSize: 20, fontWeight: AppFontWeight.medium);
   TextStyle get bodyText =>
       _baseTextStyle.copyWith(fontSize: 16, fontWeight: AppFontWeight.medium);
 
