@@ -22,7 +22,7 @@ class LabelTextField extends StatefulWidget {
     this.onChanged,
     this.onTap,
     this.readOnly = false,
-    this.labelText = 'Text Form',
+    this.labelText,
     this.helperText,
     this.errorText,
     this.hintText = 'Input Text Here',
@@ -44,10 +44,10 @@ class LabelTextField extends StatefulWidget {
     this.radius = 10,
     this.isSuccess = false,
     this.fillColor,
-    this.successColor = AppColor.black,
+    this.successColor = AppColor.success,
     this.errorColor = AppColor.errorText,
-    this.focusedColor = AppColor.primary,
-    this.borderColor = const Color(0xFFD0D5DD),
+    this.focusedColor = AppColor.primary2,
+    this.borderColor = AppColor.black50,
     this.disabledColor = AppColor.disabledText,
     this.iconColor,
     this.validateWhileTyping = true,
@@ -62,7 +62,7 @@ class LabelTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final VoidCallback? onTap;
   final bool readOnly;
-  final String labelText;
+  final String? labelText;
   final String? helperText;
   final String? errorText;
   final String hintText;
@@ -199,7 +199,6 @@ class _LabelTextFieldState extends State<LabelTextField> {
         !isDisabled &&
         ((liveValidationIsVisible && isFilled) || widget.isSuccess);
 
-    // Border color logic
     Color borderColor = widget.borderColor;
     if (isDisabled) {
       borderColor = widget.disabledColor;
@@ -211,7 +210,6 @@ class _LabelTextFieldState extends State<LabelTextField> {
       borderColor = widget.focusedColor;
     }
 
-    // Helper text and color logic
     String? helperText = effectiveErrorText ?? widget.helperText;
     Color helperColor = AppColor.baseText;
     if (hasError) {
@@ -222,7 +220,6 @@ class _LabelTextFieldState extends State<LabelTextField> {
       helperColor = widget.disabledColor;
     }
 
-    // Fill color logic
     Color fillColor = AppColor.white;
     if (isDisabled) {
       fillColor = widget.disabledColor;
@@ -230,28 +227,32 @@ class _LabelTextFieldState extends State<LabelTextField> {
       fillColor = widget.successColor.withOpacity(0.10);
     }
 
-    // Icon color logic
     Color iconColor =
         widget.iconColor ??
         _iconColor(hasError, isDisabled, isSuccess, isTyping);
+    final labelText = widget.labelText?.trim();
+    final hasLabel = labelText?.isNotEmpty ?? false;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Content(
-          data: widget.labelText,
-          textStyle:
-              widget.labelStyle ??
-              context.bodyText.copyWith(
-                color: AppColor.primaryText,
-                fontWeight: AppFontWeight.semiBold,
-              ),
-          size: 14,
-        ),
-        SizedBox(height: 8.h),
+        if (hasLabel) ...[
+          Content(
+            data: labelText!,
+            textStyle:
+                widget.labelStyle ??
+                context.bodyText.copyWith(
+                  color: AppColor.primaryText,
+                  fontWeight: AppFontWeight.semiBold,
+                ),
+            size: 14,
+          ),
+          SizedBox(height: 8.h),
+        ],
         TextFormField(
           cursorHeight: 20,
+          cursorColor: AppColor.black20,
           keyboardAppearance: Brightness.light,
           obscuringCharacter: '*',
           enabled: widget.enabled,
@@ -303,7 +304,7 @@ class _LabelTextFieldState extends State<LabelTextField> {
             isDense: true,
             contentPadding:
                 widget.contentPadding ??
-                EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                EdgeInsets.symmetric(horizontal: 0.w, vertical: 16.h),
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.obscureText
                 ? _buildPasswordIcon(iconColor)
@@ -353,9 +354,9 @@ class _LabelTextFieldState extends State<LabelTextField> {
     return AppColor.baseText;
   }
 
-  OutlineInputBorder _outlineBorder(Color color) {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(widget.radius.r),
+  UnderlineInputBorder _outlineBorder(Color color) {
+    return UnderlineInputBorder(
+      // borderRadius: BorderRadius.circular(widget.radius.r),
       borderSide: BorderSide(color: color, width: 1),
     );
   }
