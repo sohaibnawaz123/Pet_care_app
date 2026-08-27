@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pet_care_app/core/constant/app_url.dart';
 import 'package:pet_care_app/core/network/network_service.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/register_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/register_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/register_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/register_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/register_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/register_view_initial_params.dart';
+import 'package:pet_care_app/modules/auth/presentation/validator/register_validator.dart';
 
-
-
-  

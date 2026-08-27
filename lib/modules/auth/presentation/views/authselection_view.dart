@@ -5,6 +5,7 @@ import 'package:pet_care_app/component/image/app_network_image.dart';
 import 'package:pet_care_app/component/text/content.dart';
 import 'package:pet_care_app/core/resource/app_asset.dart';
 import 'package:pet_care_app/core/resource/app_color.dart';
+import 'package:pet_care_app/core/utils/extension/app_edge_insets.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
@@ -94,7 +95,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
             ),
           ),
           Positioned(
-            top: -110,
+            top: -130,
             left: 32,
             right: 32,
 
@@ -115,7 +116,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     );
                   },
                 ),
-                const SizedBox(height: 16),
+                // const SizedBox(height: 16),
               ],
             ),
           ),
@@ -156,7 +157,8 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 8),
                     Content(
-                      data:'To find the best pet sitters in town and ensure exceptional care for your pets',
+                      data:
+                          'To find the best pet sitters in town and ensure exceptional care for your pets',
                       textStyle: context.lightText.copyWith(
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
@@ -172,9 +174,12 @@ class _AuthselectionViewState extends State<AuthselectionView>
                       fontColor: AppColor.black,
                       fontSize: 16,
                       radius: 24,
-                      // onTap: () {
-                      //   context.pushPage(SignupPage());
-                      // },
+                      onTap: () {
+                        context.pushNamed(
+                          AppRouteNames.register,
+                          extra: {'role': widget.bloc.initialParams.role},
+                        );
+                      },
                       // border: BorderSide(color: AppColor.black),
                       buttonColor: AppColor.secondary,
                     ),
@@ -236,7 +241,10 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 12),
                     GestureDetector(
-                      onTap: () => context.pushNamed(AppRouteNames.login),
+                      onTap: () => context.pushNamed(
+                        AppRouteNames.login,
+                        extra: {'role': widget.bloc.initialParams.role},
+                      ),
                       child: Text.rich(
                         TextSpan(
                           children: [
@@ -265,7 +273,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                 ),
               ),
             ),
-          ).paddingOnly(bottom: MediaQuery.of(context).viewPadding.bottom),
+          ).paddingOnly(bottom: context.pagePadding.bottom),
         ],
       ),
     );

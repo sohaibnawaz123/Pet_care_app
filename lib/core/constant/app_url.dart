@@ -3,5 +3,6 @@ class AppUrl {
   static String roleselectionUrl = '';
   static String authselectionUrl = '';
   static String loginUrl = '';
+  static String registerUrl = '';
 
 }

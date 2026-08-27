@@ -29,6 +29,15 @@ import 'package:pet_care_app/modules/auth/presentation/blocs/login/login_bloc.da
 import 'package:pet_care_app/modules/auth/presentation/routes/login_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/login_validator.dart';
 
+import 'package:pet_care_app/modules/auth/data/datasource/register_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/register_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/register_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/register_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/register_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/register_view_initial_params.dart';
+import 'package:pet_care_app/modules/auth/presentation/validator/register_validator.dart';
+
 void getInstance(BuildContext context) {
   getIt = GetIt.instance;
   if (!getIt.isRegistered<NetworkService>()) {
@@ -115,5 +124,31 @@ void getInstance(BuildContext context) {
     getIt.registerFactoryParam<LoginBloc, LoginViewInitialParams, dynamic>(
       (params, _) => LoginBloc(params, getIt()),
     );
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Register  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<RegisterRemoteDataSource>()) {
+    getIt.registerSingleton<RegisterRemoteDataSource>(
+      RegisterRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<RegisterValidator>()) {
+    getIt.registerSingleton<RegisterValidator>(RegisterValidator());
+  }
+
+  if (!getIt.isRegistered<RegisterRepo>()) {
+    getIt.registerSingleton<RegisterRepo>(RegisterRestApiRepo(getIt()));
+  }
+
+  if (!getIt.isRegistered<RegisterUseCase>()) {
+    getIt.registerSingleton<RegisterUseCase>(RegisterUseCase(getIt(), getIt()));
+  }
+
+  if (!getIt.isRegistered<RegisterBloc>()) {
+    getIt
+        .registerFactoryParam<RegisterBloc, RegisterViewInitialParams, dynamic>(
+          (params, _) => RegisterBloc(params, getIt()),
+        );
   }
 }

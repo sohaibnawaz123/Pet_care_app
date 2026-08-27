@@ -3,10 +3,12 @@ class AppRoutePaths {
   static const String roleselection = '/roleselection';
   static const String authselection = '/authselection';
   static const String login = '/login';
+  static const String register = '/register';
 }
 
 class AppRouteNames {
   static const String roleselection = 'roleselection';
   static const String authselection = 'authselection';
   static const String login = 'login';
+  static const String register = 'register';
 }
