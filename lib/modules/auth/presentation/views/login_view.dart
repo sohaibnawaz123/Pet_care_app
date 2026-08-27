@@ -5,6 +5,7 @@ import 'package:pet_care_app/component/text/content.dart';
 import 'package:pet_care_app/component/text_field/label_text_field.dart';
 import 'package:pet_care_app/core/resource/app_asset.dart';
 import 'package:pet_care_app/core/resource/app_color.dart';
+import 'package:pet_care_app/core/utils/extension/app_edge_insets.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
@@ -39,7 +40,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
           Positioned(
-            top: -20,
+            top: 0,
             left: 32,
             right: 32,
             child: Padding(
@@ -67,15 +68,19 @@ class _LoginViewState extends State<LoginView> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: context.mHeight * 0.55,
+              alignment: Alignment.topCenter,
+              height: context.mHeight * 0.45,
               width: double.infinity,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: AppColor.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
+              child: ListView(
+                // physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   Align(
                     alignment: Alignment.center,
@@ -114,15 +119,20 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(height: 16),
                   LabelTextField(
                     // labelText: 'Email',
-                    validator: (p0) => Validator.validateEmail(p0 ?? ""),
+                    validator: (value) => Validator.validateEmail(value ?? ""),
                     hintText: "Email",
                     validateWhileTyping: true,
                   ),
                   // _LoginEmailInput(),
                   const SizedBox(height: 10),
-                  LabelTextField(hintText: 'Password'),
+                  LabelTextField(
+                    obscureText: true,
+                    hintText: 'Password',
+                    validator: (value) => Validator.validatePassword(value ?? ""),
+                    validateWhileTyping: true,
+                  ),
                   // _LoginPassswordInput(),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
                   Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
@@ -130,7 +140,7 @@ class _LoginViewState extends State<LoginView> {
                       //   context.pushPage(const UserForgetPasswordPage());
                       // },
                       child: Text(
-                        'forgot_password',
+                        'Forgot password',
                         style: context.bodyText.copyWith(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -139,20 +149,23 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
-                  AppButton.textButton(
-                    fontColor: AppColor.black,
-                    buttonColor: AppColor.appButton,
-                    radius: 24,
-                    // height: 40,
-                    title: "Login",
+                  const SizedBox(height: 30),
+                  Align(
+                    alignment: AlignmentGeometry.bottomCenter,
+                    child: AppButton.textButton(
+                      fontColor: AppColor.black,
+                      buttonColor: AppColor.appButton,
+                      radius: 24,
+                      // height: 40,
+                      title: "Login",
+                    ),
                   ),
                   // _LoginSubmit(),
-                  const SizedBox(height: 12),
+                  // const SizedBox(height: 12),
                 ],
               ),
             ),
-          ).paddingOnly(bottom: MediaQuery.of(context).viewPadding.bottom),
+          ).paddingOnly(bottom:context.pagePadding.bottom),
         ],
       ),
     );

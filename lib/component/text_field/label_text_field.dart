@@ -224,7 +224,7 @@ class _LabelTextFieldState extends State<LabelTextField> {
     if (isDisabled) {
       fillColor = widget.disabledColor;
     } else if (isSuccess) {
-      fillColor = widget.successColor.withOpacity(0.10);
+      fillColor = widget.successColor.withOpacity(0);
     }
 
     Color iconColor =
@@ -356,7 +356,7 @@ class _LabelTextFieldState extends State<LabelTextField> {
 
   UnderlineInputBorder _outlineBorder(Color color) {
     return UnderlineInputBorder(
-      // borderRadius: BorderRadius.circular(widget.radius.r),
+      borderRadius: BorderRadius.circular(0),
       borderSide: BorderSide(color: color, width: 1),
     );
   }
@@ -365,7 +365,7 @@ class _LabelTextFieldState extends State<LabelTextField> {
     return GestureDetector(
       onTap: _toggleObscure,
       child: SvgPicture.asset(
-        _obscureText ? AppAsset.eye : AppAsset.eyeOff,
+        _obscureText ? AppAsset.eyeOff : AppAsset.eye,
         height: 24.h,
         width: 24.w,
         fit: BoxFit.scaleDown,
