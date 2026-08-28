@@ -40,29 +40,23 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
           Positioned(
-            top: 0,
-            left: 32,
-            right: 32,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(height: context.mHeight * 0.1),
-                  LinearProgressIndicator(
-                    color: AppColor.secondary,
-                    backgroundColor: AppColor.lightGrey90,
-                    minHeight: 6,
-                    value: 0.9,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  SizedBox(height: context.mHeight * 0.08),
-                  AppImage.asset(
-                    assetPath: AppAsset.logo,
-                    size: double.infinity,
-                  ),
-                ],
-              ),
+            top: context.pagePadding.top + 20,
+            left: context.pagePadding.left,
+            right: context.pagePadding.right,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // SizedBox(height: context.mHeight * 0.1),
+                LinearProgressIndicator(
+                  color: AppColor.secondary,
+                  backgroundColor: AppColor.lightGrey90,
+                  minHeight: 6,
+                  value: 0.9,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                SizedBox(height: context.mHeight * 0.08),
+                AppImage.asset(assetPath: AppAsset.logo, size: double.infinity),
+              ],
             ),
           ),
           Align(
@@ -71,7 +65,7 @@ class _LoginViewState extends State<LoginView> {
               alignment: Alignment.topCenter,
               height: context.mHeight * 0.45,
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: AppColor.white,
@@ -128,7 +122,8 @@ class _LoginViewState extends State<LoginView> {
                   LabelTextField(
                     obscureText: true,
                     hintText: 'Password',
-                    validator: (value) => Validator.validatePassword(value ?? ""),
+                    validator: (value) =>
+                        Validator.validatePassword(value ?? ""),
                     validateWhileTyping: true,
                   ),
                   // _LoginPassswordInput(),
@@ -165,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                 ],
               ),
             ),
-          ).paddingOnly(bottom:context.pagePadding.bottom),
+          ).paddingOnly(bottom: context.pagePadding.bottom),
         ],
       ),
     );

@@ -37,6 +37,7 @@ class AppColor {
   static const Color black20 = Color(0xFF202020);
   static const Color black40 = Color(0xFF22272B);
   static const Color black50 = Color(0xFF252525);
+  static const Color shadow = Color(0xFFC6C6C6);
 
   // Background colors
   static const Color darkBackground = Color(0xFF0E0E0E);
