@@ -1,4 +1,5 @@
 // import 'dart:async';
+import 'dart:convert';
 
 // import 'package:fpdart/fpdart.dart';
 // import 'package:meta/meta.dart';
@@ -6,8 +7,49 @@
 // import 'package:pet_care_app/core/utils/utils.dart';
 // import 'package:socket_io_client/socket_io_client.dart' as io;
 
-// part 'app_event.dart';
-// part 'app_state.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:pet_care_app/core/store/store_preference.dart';
+import 'package:pet_care_app/core/store/user_store_key.dart';
+import 'package:pet_care_app/core/utils/utils.dart';
+
+part 'app_event.dart';
+part 'app_state.dart';
+
+class AppBloc extends Bloc<AppEvent, AppState> {
+  AppBloc() : super(const AppState()) {
+    on<ChangeToArabic>(_changeToArabic);
+    on<ChangeToEnglish>(_changeToEnglish);
+  }
+
+  Future<void> _changeToArabic(
+    ChangeToArabic event,
+    Emitter<AppState> emit,
+  ) async {
+    _persistLanguageCode('ar');
+    emit(state.copyWith(local: const Locale('ar')));
+  }
+
+  Future<void> _changeToEnglish(
+    ChangeToEnglish event,
+    Emitter<AppState> emit,
+  ) async {
+    _persistLanguageCode('en');
+    emit(state.copyWith(local: const Locale('en')));
+  }
+
+  void _persistLanguageCode(String languageCode) {
+    final response = StorePreference().write<String>(
+      UserStoreKey.userLocalLanguage,
+      jsonEncode(languageCode),
+    );
+
+    response.fold(
+      (failure) => Utils.logError(failure.error, name: 'App Language'),
+      (_) => Utils.logInfo(languageCode, name: 'App Language'),
+    );
+  }
+}
 
 // class AppBloc extends Bloc<AppEvent, AppState> {
 //   final AppUseCase _useCase;

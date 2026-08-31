@@ -6,10 +6,14 @@ import 'package:pet_care_app/component/button/app_button.dart';
 import 'package:pet_care_app/component/image/app_network_image.dart';
 import 'package:pet_care_app/core/resource/app_asset.dart';
 import 'package:pet_care_app/core/resource/app_color.dart';
+import 'package:pet_care_app/core/utils/extension/app_edge_insets.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
+import 'package:pet_care_app/main.dart';
 import 'package:pet_care_app/modules/app/domain/entitties/user_role.dart';
+import 'package:pet_care_app/modules/app/presentation/bloc/app_bloc.dart';
+import 'package:pet_care_app/modules/app/presentation/language_change_wiget.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/roleselection/roleselection_bloc.dart';
 import 'package:pet_care_app/routes/app_route_paths.dart';
 
@@ -183,19 +187,22 @@ class _RoleselectionViewState extends State<RoleselectionView>
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 48, right: 32),
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    color: AppColor.appPrimary,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: AppImage.svg(
-                      svgPath: AppAsset.languageIcon,
-                      size: 20,
+              child: GestureDetector(
+                onTap: () => AppLanguage.show(context, bloc: getIt<AppBloc>()),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 48, right: 32),
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      color: AppColor.appPrimary,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: AppImage.svg(
+                        svgPath: AppAsset.languageIcon,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -253,7 +260,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Welcome to',
+                                text: translate(context, 'welcome_to'),
                                 style: context.headingText.copyWith(
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -274,7 +281,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                       SlideTransition(
                         position: textImageAnimation,
                         child: Text(
-                          'Our trusted companion for pet care, connecting furry sitters with happy tails. Because your furry friends deserve the best even when you\'re away.',
+                          translate(context, 'about_us'),
                           style: context.subHeadingText.copyWith(
                             fontWeight: FontWeight.w400,
                             fontSize: 15,
@@ -291,7 +298,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                             AppRouteNames.authselection,
                             queryParameters: {'role': UserRole.petSitter.value},
                           ),
-                          title: 'I\'m a Pet Sitter',
+                          title: translate(context, 'pet_sitter'),
                           width: double.infinity,
                           height: 50,
                           fontColor: AppColor.black,
@@ -308,7 +315,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                             AppRouteNames.authselection,
                             queryParameters: {'role': UserRole.petOwner.value},
                           ),
-                          title: 'I\'m a Pet Owner',
+                          title: translate(context, 'pet_owner'),
                           width: double.infinity,
                           height: 50,
                           fontColor: AppColor.black,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_care_app/core/localization/localization.dart';
 
 extension AppEdgeInsets on BuildContext {
   EdgeInsets get pagePadding => EdgeInsets.only(
@@ -25,4 +26,8 @@ extension AppEdgeInsets on BuildContext {
   );
   EdgeInsets get buttonMarginTopBottom =>
       EdgeInsets.only(top: 20, bottom: pagePadding.bottom);
+}
+
+String translate(BuildContext context, String key) {
+  return Localization.of(context)?.translate(key) ?? "Undefined translation";
 }

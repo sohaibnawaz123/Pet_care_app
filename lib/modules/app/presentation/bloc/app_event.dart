@@ -1,7 +1,10 @@
-// part of 'app_bloc.dart';
+part of 'app_bloc.dart';
 
-// @immutable
-// sealed class AppEvent {}
+sealed class AppEvent {}
+
+class ChangeToArabic extends AppEvent {}
+
+class ChangeToEnglish extends AppEvent {}
 
 // class ReadLocalUserEvent extends AppEvent {}
 

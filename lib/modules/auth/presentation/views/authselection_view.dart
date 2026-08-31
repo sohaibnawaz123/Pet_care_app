@@ -9,6 +9,9 @@ import 'package:pet_care_app/core/utils/extension/app_edge_insets.dart';
 import 'package:pet_care_app/core/utils/extension/app_padding.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
+import 'package:pet_care_app/main.dart';
+import 'package:pet_care_app/modules/app/presentation/bloc/app_bloc.dart';
+import 'package:pet_care_app/modules/app/presentation/language_change_wiget.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/authselection/authselection_bloc.dart';
 import 'package:pet_care_app/routes/app_route_paths.dart';
 
@@ -79,17 +82,23 @@ class _AuthselectionViewState extends State<AuthselectionView>
           ),
           Align(
             alignment: Alignment.topRight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 48, right: 32),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: const BoxDecoration(
-                  color: AppColor.appPrimary,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: AppImage.svg(svgPath: AppAsset.languageIcon, size: 20),
+            child: GestureDetector(
+              onTap: () => AppLanguage.show(context, bloc: getIt<AppBloc>()),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 48, right: 32),
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    color: AppColor.appPrimary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: AppImage.svg(
+                      svgPath: AppAsset.languageIcon,
+                      size: 20,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -139,7 +148,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Welcome to',
+                            text: translate(context, 'welcome_to'),
                             style: context.headingText.copyWith(
                               fontWeight: FontWeight.w400,
                             ),
@@ -157,8 +166,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 8),
                     Content(
-                      data:
-                          'To find the best pet sitters in town and ensure exceptional care for your pets',
+                      data: translate(context, 'find_best_sitters'),
                       textStyle: context.lightText.copyWith(
                         fontWeight: FontWeight.w400,
                         fontSize: 15,
@@ -168,7 +176,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 24),
                     AppButton.textButton(
-                      title: 'Sign up with Email',
+                      title: translate(context, 'sign_up_with_email'),
                       width: double.infinity,
                       height: 50,
                       fontColor: AppColor.black,
@@ -196,7 +204,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Text(
-                            'OR',
+                            translate(context, 'or'),
                             style: context.lightText.copyWith(
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
@@ -215,7 +223,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 12),
                     AppButton.iconWithText(
-                      title: 'Sign up with Google',
+                      title: translate(context, 'sign_up_with_google'),
                       radius: 24,
                       iconPath: AppAsset.google,
                       width: double.infinity,
@@ -228,7 +236,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                     ),
                     const SizedBox(height: 16),
                     AppButton.iconWithText(
-                      title: 'Sign up with Facebook',
+                      title: translate(context, 'sign_up_with_facebook'),
                       radius: 24,
                       iconPath: AppAsset.facebook,
                       width: double.infinity,
@@ -249,7 +257,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Already have an account ? ',
+                              text:translate(context, 'already_have_an_account'),
                               style: context.lightText.copyWith(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
@@ -257,7 +265,7 @@ class _AuthselectionViewState extends State<AuthselectionView>
                               ),
                             ),
                             TextSpan(
-                              text: 'Login',
+                              text: translate(context, 'login'),
                               style: context.lightText.copyWith(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
