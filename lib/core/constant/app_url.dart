@@ -5,5 +5,5 @@ class AppUrl {
   static String loginUrl = '';
   static String registerUrl = '';
   static String forgetpasswordUrl = '';
-
+  static String forgetpasswordotpUrl = '';
 }

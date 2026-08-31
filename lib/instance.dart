@@ -47,6 +47,15 @@ import 'package:pet_care_app/modules/auth/presentation/blocs/forgetpassword/forg
 import 'package:pet_care_app/modules/auth/presentation/routes/forgetpassword_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/forgetpassword_validator.dart';
 
+import 'package:pet_care_app/modules/auth/data/datasource/forgetpasswordotp_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/forgetpasswordotp_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/forgetpasswordotp_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/forgetpasswordotp_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/forgetpasswordotp_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/forgetpasswordotp/forgetpasswordotp_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/forgetpasswordotp_view_initial_params.dart';
+import 'package:pet_care_app/modules/auth/presentation/validator/forgetpasswordotp_validator.dart';
+
 void getInstance(BuildContext context) {
   getIt = GetIt.instance;
   if (!getIt.isRegistered<NetworkService>()) {
@@ -190,5 +199,38 @@ void getInstance(BuildContext context) {
       ForgetpasswordViewInitialParams,
       dynamic
     >((params, _) => ForgetpasswordBloc(params, getIt()));
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Forgetpasswordotp  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<ForgetpasswordotpRemoteDataSource>()) {
+    getIt.registerSingleton<ForgetpasswordotpRemoteDataSource>(
+      ForgetpasswordotpRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordotpValidator>()) {
+    getIt.registerSingleton<ForgetpasswordotpValidator>(
+      ForgetpasswordotpValidator(),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordotpRepo>()) {
+    getIt.registerSingleton<ForgetpasswordotpRepo>(
+      ForgetpasswordotpRestApiRepo(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordotpUseCase>()) {
+    getIt.registerSingleton<ForgetpasswordotpUseCase>(
+      ForgetpasswordotpUseCase(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordotpBloc>()) {
+    getIt.registerFactoryParam<
+      ForgetpasswordotpBloc,
+      ForgetpasswordotpViewInitialParams,
+      dynamic
+    >((params, _) => ForgetpasswordotpBloc(params, getIt()));
   }
 }
