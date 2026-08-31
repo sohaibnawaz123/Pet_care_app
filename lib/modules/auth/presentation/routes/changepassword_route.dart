@@ -3,10 +3,11 @@ import 'package:pet_care_app/main.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/changepassword/changepassword_bloc.dart';
 import 'package:pet_care_app/modules/auth/presentation/routes/changepassword_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/views/changepassword_view.dart';
+import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class ChangepasswordRoute {
-  static const String name = 'auth_changepassword';
-  static const String path = '/auth/changepassword';
+  static const String name = AppRouteNames.changepassword;
+  static const String path = AppRoutePaths.changepassword;
 
   static GoRoute get route => GoRoute(
     name: name,
