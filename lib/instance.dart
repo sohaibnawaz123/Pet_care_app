@@ -56,6 +56,15 @@ import 'package:pet_care_app/modules/auth/presentation/blocs/forgetpasswordotp/f
 import 'package:pet_care_app/modules/auth/presentation/routes/forgetpasswordotp_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/forgetpasswordotp_validator.dart';
 
+import 'package:pet_care_app/modules/auth/data/datasource/changepassword_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/changepassword_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/changepassword_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/changepassword_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/changepassword_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/changepassword/changepassword_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/changepassword_view_initial_params.dart';
+import 'package:pet_care_app/modules/auth/presentation/validator/changepassword_validator.dart';
+
 void getInstance(BuildContext context) {
   getIt = GetIt.instance;
   if (!getIt.isRegistered<NetworkService>()) {
@@ -232,5 +241,36 @@ void getInstance(BuildContext context) {
       ForgetpasswordotpViewInitialParams,
       dynamic
     >((params, _) => ForgetpasswordotpBloc(params, getIt()));
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Changepassword  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<ChangepasswordRemoteDataSource>()) {
+    getIt.registerSingleton<ChangepasswordRemoteDataSource>(
+      ChangepasswordRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ChangepasswordValidator>()) {
+    getIt.registerSingleton<ChangepasswordValidator>(ChangepasswordValidator());
+  }
+
+  if (!getIt.isRegistered<ChangepasswordRepo>()) {
+    getIt.registerSingleton<ChangepasswordRepo>(
+      ChangepasswordRestApiRepo(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ChangepasswordUseCase>()) {
+    getIt.registerSingleton<ChangepasswordUseCase>(
+      ChangepasswordUseCase(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ChangepasswordBloc>()) {
+    getIt.registerFactoryParam<
+      ChangepasswordBloc,
+      ChangepasswordViewInitialParams,
+      dynamic
+    >((params, _) => ChangepasswordBloc(params, getIt()));
   }
 }

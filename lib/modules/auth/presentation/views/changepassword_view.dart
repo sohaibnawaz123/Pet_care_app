@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pet_care_app/core/resource/app_color.dart';
-import 'package:pet_care_app/modules/auth/presentation/blocs/forgetpasswordotp/forgetpasswordotp_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/changepassword/changepassword_bloc.dart';
 
 
-class ForgetpasswordotpView extends StatefulWidget {
-  final ForgetpasswordotpBloc bloc;
-  const ForgetpasswordotpView({
+class ChangepasswordView extends StatefulWidget {
+  final ChangepasswordBloc bloc;
+  const ChangepasswordView({
     super.key,
     required this.bloc,
   });
 
   @override
-  State<ForgetpasswordotpView> createState() => _ForgetpasswordotpViewState();
+  State<ChangepasswordView> createState() => _ChangepasswordViewState();
 }
 
-class _ForgetpasswordotpViewState extends State<ForgetpasswordotpView> {
+class _ChangepasswordViewState extends State<ChangepasswordView> {
   @override
   void initState() {
     super.initState();

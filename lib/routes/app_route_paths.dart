@@ -6,6 +6,7 @@ class AppRoutePaths {
   static const String register = '/auth/register';
   static const String forgetpassword = '/auth/forgetpassword';
   static const String forgetpasswordotp = '/auth/forgetpasswordotp';
+  static const String changepassword = '/auth/changepassword';
 }
 
 class AppRouteNames {
@@ -15,4 +16,5 @@ class AppRouteNames {
   static const String register = 'register';
   static const String forgetpassword = 'forgetpassword';
   static const String forgetpasswordotp = 'forgetpasswordotp';
+  static const String changepassword = 'changepassword';
 }

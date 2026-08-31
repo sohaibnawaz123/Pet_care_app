@@ -5,7 +5,6 @@ import 'package:pet_care_app/modules/auth/domain/failures/forgetpasswordotp_fail
 import 'package:pet_care_app/modules/auth/domain/params/forgetpasswordotp_param.dart';
 import 'package:pet_care_app/modules/auth/domain/repository/forgetpasswordotp_repo.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/forgetpasswordotp_validator.dart';
-import 'package:pet_care_app/modules/auth/domain/failures/forgetpasswordotp_failure.dart';
 
 class ForgetpasswordotpUseCase {
   final ForgetpasswordotpValidator validator;
