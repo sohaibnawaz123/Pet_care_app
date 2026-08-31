@@ -16,7 +16,7 @@ extension AppTextStyle on BuildContext {
       AppText().subHeadingText.copyWith(color: AppColor.headingText);
 
   TextStyle get bodyText =>
-      AppText().bodyText.copyWith(color: AppColor.baseText);
+      AppText().bodyText.copyWith(color: AppColor.secondaryText);
   TextStyle get bodyText2 =>
       AppText().bodyText.copyWith(color: AppColor.baseText);
   TextStyle get lightText =>

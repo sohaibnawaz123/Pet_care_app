@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                 // mainAxisSize: MainAxisSize.min,
                 children: [
                   Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment.centerLeft,
                     child: Text.rich(
                       TextSpan(
                         children: [
@@ -108,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                       fontSize: 15,
                       color: AppColor.black.withValues(alpha: 0.6),
                     ),
-                    alignment: TextAlign.center,
+                    alignment: TextAlign.left,
                   ),
                   const SizedBox(height: 16),
                   LabelTextField(
