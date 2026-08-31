@@ -38,6 +38,15 @@ import 'package:pet_care_app/modules/auth/presentation/blocs/register/register_b
 import 'package:pet_care_app/modules/auth/presentation/routes/register_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/register_validator.dart';
 
+import 'package:pet_care_app/modules/auth/data/datasource/forgetpassword_remote_data_source.dart';
+import 'package:pet_care_app/modules/auth/data/datasource/forgetpassword_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/auth/data/rest_api/forgetpassword_rest_api_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/repository/forgetpassword_repo.dart';
+import 'package:pet_care_app/modules/auth/domain/usecase/forgetpassword_use_case.dart';
+import 'package:pet_care_app/modules/auth/presentation/blocs/forgetpassword/forgetpassword_bloc.dart';
+import 'package:pet_care_app/modules/auth/presentation/routes/forgetpassword_view_initial_params.dart';
+import 'package:pet_care_app/modules/auth/presentation/validator/forgetpassword_validator.dart';
+
 void getInstance(BuildContext context) {
   getIt = GetIt.instance;
   if (!getIt.isRegistered<NetworkService>()) {
@@ -150,5 +159,36 @@ void getInstance(BuildContext context) {
         .registerFactoryParam<RegisterBloc, RegisterViewInitialParams, dynamic>(
           (params, _) => RegisterBloc(params, getIt()),
         );
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Forgetpassword  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<ForgetpasswordRemoteDataSource>()) {
+    getIt.registerSingleton<ForgetpasswordRemoteDataSource>(
+      ForgetpasswordRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordValidator>()) {
+    getIt.registerSingleton<ForgetpasswordValidator>(ForgetpasswordValidator());
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordRepo>()) {
+    getIt.registerSingleton<ForgetpasswordRepo>(
+      ForgetpasswordRestApiRepo(getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordUseCase>()) {
+    getIt.registerSingleton<ForgetpasswordUseCase>(
+      ForgetpasswordUseCase(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ForgetpasswordBloc>()) {
+    getIt.registerFactoryParam<
+      ForgetpasswordBloc,
+      ForgetpasswordViewInitialParams,
+      dynamic
+    >((params, _) => ForgetpasswordBloc(params, getIt()));
   }
 }

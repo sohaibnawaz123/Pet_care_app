@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pet_care_app/component/button/app_button.dart';
 import 'package:pet_care_app/component/image/app_network_image.dart';
 import 'package:pet_care_app/component/text/content.dart';
@@ -11,6 +12,7 @@ import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
 import 'package:pet_care_app/core/validator/validator.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class LoginView extends StatefulWidget {
   final LoginBloc bloc;
@@ -131,9 +133,12 @@ class _LoginViewState extends State<LoginView> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                      // onTap: () {
-                      //   context.pushPage(const UserForgetPasswordPage());
-                      // },
+                      onTap: () {
+                        context.pushNamed(
+                          AppRouteNames.forgetpassword,
+                          extra: {"role": widget.bloc.initialParams.role},
+                        );
+                      },
                       child: Text(
                         'Forgot password',
                         style: context.bodyText.copyWith(

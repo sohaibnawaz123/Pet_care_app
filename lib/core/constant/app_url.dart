@@ -4,5 +4,6 @@ class AppUrl {
   static String authselectionUrl = '';
   static String loginUrl = '';
   static String registerUrl = '';
+  static String forgetpasswordUrl = '';
 
 }
