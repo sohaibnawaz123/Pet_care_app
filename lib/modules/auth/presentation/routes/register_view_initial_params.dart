@@ -11,4 +11,10 @@ class RegisterViewInitialParams {
       // Parse the URI parameters as needed
     );
   }
+
+  factory RegisterViewInitialParams.fromExtra(Object? extra) {
+    final role = extra is Map ? extra['role'] : null;
+
+    return RegisterViewInitialParams(role: role is UserRole ? role : null);
+  }
 }

@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pet_care_app/component/button/app_button.dart';
 import 'package:pet_care_app/component/image/app_network_image.dart';
 import 'package:pet_care_app/component/text/content.dart';
@@ -9,7 +12,9 @@ import 'package:pet_care_app/core/utils/extension/app_edge_insets.dart';
 import 'package:pet_care_app/core/utils/extension/app_sized_box.dart';
 import 'package:pet_care_app/core/utils/extension/app_text_style.dart';
 import 'package:pet_care_app/core/validator/validator.dart';
+import 'package:pet_care_app/modules/app/domain/entitties/user_role.dart';
 import 'package:pet_care_app/modules/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:pet_care_app/routes/app_route_paths.dart';
 
 class RegisterView extends StatefulWidget {
   final RegisterBloc bloc;
@@ -76,7 +81,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ],
               ),
-              child: FieldSection(),
+              child: FieldSection(role: widget.bloc.initialParams.role),
             ),
           ),
         ],
@@ -86,10 +91,12 @@ class _RegisterViewState extends State<RegisterView> {
 }
 
 class FieldSection extends StatelessWidget {
-  const FieldSection({super.key});
+  final UserRole? role;
+  const FieldSection({super.key, this.role});
 
   @override
   Widget build(BuildContext context) {
+    log(role.toString());
     return ListView(
       children: [
         Text.rich(
@@ -157,6 +164,9 @@ class FieldSection extends StatelessWidget {
         ),
         50.heightBox,
         AppButton.textButton(
+          onTap: () => role == UserRole.petSitter
+              ? context.pushNamed(AppRouteNames.sittersProfileSetup)
+              : null,
           title: 'Next',
           fontColor: AppColor.black20,
           buttonColor: AppColor.appButton,

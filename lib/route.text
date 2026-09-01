@@ -1,3 +1,0 @@
-import 'package:pet_care_app/modules/auth/presentation/routes/changepassword_route.dart';
-
-  ChangepasswordRoute.route,

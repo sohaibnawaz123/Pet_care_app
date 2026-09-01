@@ -296,7 +296,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                         child: AppButton(
                           onTap: () => context.pushNamed(
                             AppRouteNames.authselection,
-                            queryParameters: {'role': UserRole.petSitter.value},
+                            extra: {'role': UserRole.petSitter},
                           ),
                           title: translate(context, 'pet_sitter'),
                           width: double.infinity,
@@ -313,7 +313,7 @@ class _RoleselectionViewState extends State<RoleselectionView>
                         child: AppButton.textButton(
                           onTap: () => context.pushNamed(
                             AppRouteNames.authselection,
-                            queryParameters: {'role': UserRole.petOwner.value},
+                            extra: {'role': UserRole.petOwner},
                           ),
                           title: translate(context, 'pet_owner'),
                           width: double.infinity,

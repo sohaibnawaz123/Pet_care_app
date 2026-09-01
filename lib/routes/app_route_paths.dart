@@ -7,6 +7,9 @@ class AppRoutePaths {
   static const String forgetpassword = '/auth/forgetpassword';
   static const String forgetpasswordotp = '/auth/forgetpasswordotp';
   static const String changepassword = '/auth/changepassword';
+
+  //Sitters
+  static const String sittersProfileSetup = '/sitter/profilesetup';
 }
 
 class AppRouteNames {
@@ -17,4 +20,7 @@ class AppRouteNames {
   static const String forgetpassword = 'forgetpassword';
   static const String forgetpasswordotp = 'forgetpasswordotp';
   static const String changepassword = 'changepassword';
+
+  //Sitters
+  static const String sittersProfileSetup = 'sitterprofilesetup';
 }

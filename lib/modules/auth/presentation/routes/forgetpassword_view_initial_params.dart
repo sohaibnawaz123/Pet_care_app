@@ -11,4 +11,12 @@ class ForgetpasswordViewInitialParams {
       // Parse the URI parameters as needed
     );
   }
+
+  factory ForgetpasswordViewInitialParams.fromExtra(Object? extra) {
+    final role = extra is Map ? extra['role'] : null;
+
+    return ForgetpasswordViewInitialParams(
+      role: role is UserRole ? role : null,
+    );
+  }
 }

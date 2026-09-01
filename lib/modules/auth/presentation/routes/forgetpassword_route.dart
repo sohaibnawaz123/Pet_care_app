@@ -13,7 +13,7 @@ class ForgetpasswordRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = ForgetpasswordViewInitialParams.fromUri(state.uri);
+      final params = ForgetpasswordViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<ForgetpasswordBloc>(param1: params);
 
       return ForgetpasswordView(bloc: bloc);

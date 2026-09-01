@@ -65,6 +65,15 @@ import 'package:pet_care_app/modules/auth/presentation/blocs/changepassword/chan
 import 'package:pet_care_app/modules/auth/presentation/routes/changepassword_view_initial_params.dart';
 import 'package:pet_care_app/modules/auth/presentation/validator/changepassword_validator.dart';
 
+import 'package:pet_care_app/modules/sitters/data/datasource/profilesetup_remote_data_source.dart';
+import 'package:pet_care_app/modules/sitters/data/datasource/profilesetup_remote_data_source_impl.dart';
+import 'package:pet_care_app/modules/sitters/data/rest_api/profilesetup_rest_api_repo.dart';
+import 'package:pet_care_app/modules/sitters/domain/repository/profilesetup_repo.dart';
+import 'package:pet_care_app/modules/sitters/domain/usecase/profilesetup_use_case.dart';
+import 'package:pet_care_app/modules/sitters/presentation/blocs/profilesetup/profilesetup_bloc.dart';
+import 'package:pet_care_app/modules/sitters/presentation/routes/profilesetup_view_initial_params.dart';
+import 'package:pet_care_app/modules/sitters/presentation/validator/profilesetup_validator.dart';
+
 void getInstance(BuildContext context) {
   getIt = GetIt.instance;
   if (!getIt.isRegistered<NetworkService>()) {
@@ -272,5 +281,34 @@ void getInstance(BuildContext context) {
       ChangepasswordViewInitialParams,
       dynamic
     >((params, _) => ChangepasswordBloc(params, getIt()));
+  }
+
+  // <<<<<<<<<<<<<<<<<<<<<<<  Profilesetup  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<ProfilesetupRemoteDataSource>()) {
+    getIt.registerSingleton<ProfilesetupRemoteDataSource>(
+      ProfilesetupRemoteDataSourceImpl(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ProfilesetupValidator>()) {
+    getIt.registerSingleton<ProfilesetupValidator>(ProfilesetupValidator());
+  }
+
+  if (!getIt.isRegistered<ProfilesetupRepo>()) {
+    getIt.registerSingleton<ProfilesetupRepo>(ProfilesetupRestApiRepo(getIt()));
+  }
+
+  if (!getIt.isRegistered<ProfilesetupUseCase>()) {
+    getIt.registerSingleton<ProfilesetupUseCase>(
+      ProfilesetupUseCase(getIt(), getIt()),
+    );
+  }
+
+  if (!getIt.isRegistered<ProfilesetupBloc>()) {
+    getIt.registerFactoryParam<
+      ProfilesetupBloc,
+      ProfilesetupViewInitialParams,
+      dynamic
+    >((params, _) => ProfilesetupBloc(params, getIt()));
   }
 }

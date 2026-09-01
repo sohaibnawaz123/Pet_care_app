@@ -118,8 +118,10 @@ class _ForgetpasswordViewState extends State<ForgetpasswordView> {
                       fontColor: AppColor.black,
                       buttonColor: AppColor.appButton,
                       radius: 24,
-                      onTap: () =>
-                          context.pushNamed(AppRouteNames.forgetpasswordotp),
+                      onTap: () => context.pushNamed(
+                        AppRouteNames.forgetpasswordotp,
+                        extra: {'role': widget.bloc.initialParams.role},
+                      ),
                       title: "Send code",
                     ),
                   ),

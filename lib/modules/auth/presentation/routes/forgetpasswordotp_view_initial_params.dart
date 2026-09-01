@@ -14,4 +14,14 @@ class ForgetpasswordotpViewInitialParams {
       // Parse the URI parameters as needed
     );
   }
+
+  factory ForgetpasswordotpViewInitialParams.fromExtra(Object? extra) {
+    final role = extra is Map ? extra['role'] : null;
+    final email = extra is Map ? extra['email'] : null;
+
+    return ForgetpasswordotpViewInitialParams(
+      role: role is UserRole ? role : null,
+      email: email is String ? email : '',
+    );
+  }
 }

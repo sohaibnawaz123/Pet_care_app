@@ -4,4 +4,27 @@ import 'package:pet_care_app/core/network/network_service.dart';
 
 
 
-  
+  // <<<<<<<<<<<<<<<<<<<<<<<  Profilesetup  >>>>>>>>>>>>>>>>>>>>>>>
+  if (!getIt.isRegistered<ProfilesetupRemoteDataSource>()) {
+    getIt.registerSingleton<ProfilesetupRemoteDataSource>(
+        ProfilesetupRemoteDataSourceImpl(getIt(), getIt()));
+  }
+
+  if (!getIt.isRegistered<ProfilesetupValidator>()) {
+    getIt.registerSingleton<ProfilesetupValidator>(ProfilesetupValidator());
+  }
+
+  if (!getIt.isRegistered<ProfilesetupRepo>()) {
+    getIt.registerSingleton<ProfilesetupRepo>(
+        ProfilesetupRestApiRepo(getIt()));
+  }
+
+  if (!getIt.isRegistered<ProfilesetupUseCase>()) {
+    getIt.registerSingleton<ProfilesetupUseCase>(
+        ProfilesetupUseCase(getIt(),getIt()));
+  }
+
+  if (!getIt.isRegistered<ProfilesetupBloc>()) {
+    getIt.registerFactoryParam<ProfilesetupBloc, ProfilesetupViewInitialParams, dynamic>(
+        (params, _) => ProfilesetupBloc(params, getIt()));
+  }

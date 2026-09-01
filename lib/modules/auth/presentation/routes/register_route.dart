@@ -13,7 +13,7 @@ class RegisterRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = RegisterViewInitialParams.fromUri(state.uri);
+      final params = RegisterViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<RegisterBloc>(param1: params);
 
       return RegisterView(bloc: bloc);

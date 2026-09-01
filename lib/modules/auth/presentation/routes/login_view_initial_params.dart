@@ -11,4 +11,10 @@ class LoginViewInitialParams {
       // Parse the URI parameters as needed
     );
   }
+
+  factory LoginViewInitialParams.fromExtra(Object? extra) {
+    final role = extra is Map ? extra['role'] : null;
+
+    return LoginViewInitialParams(role: role is UserRole ? role : null);
+  }
 }

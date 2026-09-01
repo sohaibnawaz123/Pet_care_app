@@ -13,7 +13,7 @@ class ChangepasswordRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = ChangepasswordViewInitialParams.fromUri(state.uri);
+      final params = ChangepasswordViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<ChangepasswordBloc>(param1: params);
 
       return ChangepasswordView(bloc: bloc);

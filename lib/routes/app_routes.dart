@@ -6,6 +6,7 @@ import 'package:pet_care_app/modules/auth/presentation/routes/register_route.dar
 import 'package:pet_care_app/modules/auth/presentation/routes/forgetpassword_route.dart';
 import 'package:pet_care_app/modules/auth/presentation/routes/forgetpasswordotp_route.dart';
 import 'package:pet_care_app/modules/auth/presentation/routes/changepassword_route.dart';
+import 'package:pet_care_app/modules/sitters/presentation/routes/profilesetup_route.dart';
 
 final List<RouteBase> appRoutes = <RouteBase>[
   RoleselectionRoute.route,
@@ -15,4 +16,5 @@ final List<RouteBase> appRoutes = <RouteBase>[
   ForgetpasswordRoute.route,
   ForgetpasswordotpRoute.route,
   ChangepasswordRoute.route,
+  ProfilesetupRoute.route,
 ];

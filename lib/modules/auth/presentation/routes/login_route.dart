@@ -13,7 +13,7 @@ class LoginRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = LoginViewInitialParams.fromUri(state.uri);
+      final params = LoginViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<LoginBloc>(param1: params);
 
       return LoginView(bloc: bloc);

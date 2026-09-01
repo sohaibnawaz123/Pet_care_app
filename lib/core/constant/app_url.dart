@@ -7,4 +7,5 @@ class AppUrl {
   static String forgetpasswordUrl = '';
   static String forgetpasswordotpUrl = '';
   static String changepasswordUrl = '';
+  static String profilesetupUrl = '';
 }

@@ -13,7 +13,7 @@ class ForgetpasswordotpRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = ForgetpasswordotpViewInitialParams.fromUri(state.uri);
+      final params = ForgetpasswordotpViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<ForgetpasswordotpBloc>(param1: params);
 
       return ForgetpasswordotpView(bloc: bloc);

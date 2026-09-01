@@ -11,4 +11,10 @@ class AuthselectionViewInitialParams {
       role: roleValue == null ? null : userRoleFromJson(roleValue),
     );
   }
+
+  factory AuthselectionViewInitialParams.fromExtra(Object? extra) {
+    final role = extra is Map ? extra['role'] : null;
+
+    return AuthselectionViewInitialParams(role: role is UserRole ? role : null);
+  }
 }

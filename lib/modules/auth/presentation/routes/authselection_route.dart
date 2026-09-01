@@ -13,7 +13,7 @@ class AuthselectionRoute {
     name: name,
     path: path,
     builder: (context, state) {
-      final params = AuthselectionViewInitialParams.fromUri(state.uri);
+      final params = AuthselectionViewInitialParams.fromExtra(state.extra);
       final bloc = getIt<AuthselectionBloc>(param1: params);
 
       return AuthselectionView(bloc: bloc);
