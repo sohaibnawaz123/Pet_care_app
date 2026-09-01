@@ -5,7 +5,6 @@ import 'package:pet_care_app/modules/sitters/domain/failures/profilesetup_failur
 import 'package:pet_care_app/modules/sitters/domain/params/profilesetup_param.dart';
 import 'package:pet_care_app/modules/sitters/domain/repository/profilesetup_repo.dart';
 import 'package:pet_care_app/modules/sitters/presentation/validator/profilesetup_validator.dart';
-import 'package:pet_care_app/modules/sitters/domain/failures/profilesetup_failure.dart';
 
 class ProfilesetupUseCase {
   final ProfilesetupValidator validator;
