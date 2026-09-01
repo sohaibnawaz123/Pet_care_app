@@ -233,7 +233,7 @@ class AppButton extends StatelessWidget {
         width: isResponsiveWidth ? null : width,
         decoration: BoxDecoration(
           color: isDisable
-              ? AppColor.primary.withValues(alpha: 0.3)
+              ? AppColor.black50.withValues(alpha: 0.5)
               : isLoading
               ? buttonColor ?? AppColor.primary.withValues(alpha: 0.7)
               : buttonColor ?? AppColor.primary,
@@ -303,7 +303,7 @@ class AppButton extends StatelessWidget {
       size: fontSize,
       textStyle: context.subHeadingText.copyWith(
         fontWeight: fontWeight,
-        color: fontColor,
+        color:isDisable? AppColor.white :fontColor,
         fontSize: fontSize,
       ),
       alignment: TextAlign.center,

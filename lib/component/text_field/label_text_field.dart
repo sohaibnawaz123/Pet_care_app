@@ -46,8 +46,8 @@ class LabelTextField extends StatefulWidget {
     this.fillColor,
     this.successColor = AppColor.success,
     this.errorColor = AppColor.errorText,
-    this.focusedColor = AppColor.primary2,
-    this.borderColor = AppColor.black50,
+    this.focusedColor = AppColor.black40,
+    this.borderColor = AppColor.disabledText,
     this.disabledColor = AppColor.disabledText,
     this.iconColor,
     this.validateWhileTyping = true,
@@ -298,7 +298,7 @@ class _LabelTextFieldState extends State<LabelTextField> {
             hintStyle:
                 widget.hintStyle ??
                 context.bodyText.copyWith(
-                  color: AppColor.baseText,
+                  color: AppColor.baseText.withValues(alpha: 0.5),
                   fontSize: 14.sp,
                 ),
             isDense: true,

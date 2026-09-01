@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pet_care_app/component/button/app_button.dart';
@@ -25,9 +23,45 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final TextEditingController _fullName = TextEditingController();
+  final TextEditingController _userName = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
+  bool _isFormValid = false;
+
   @override
   void initState() {
     super.initState();
+    _fullName.addListener(_updateFormValidity);
+    _userName.addListener(_updateFormValidity);
+    _email.addListener(_updateFormValidity);
+    _password.addListener(_updateFormValidity);
+    _confirmPassword.addListener(_updateFormValidity);
+  }
+
+  void _updateFormValidity() {
+    final isValid =
+        Validator.validateFullName(_fullName.text, 'joe john') == null &&
+        Validator.validateFullName(_userName.text, 'Eg: jeojohn') == null &&
+        Validator.validateEmail(_email.text) == null &&
+        Validator.validatePassword(_password.text) == null &&
+        Validator.validatePassword(_confirmPassword.text) == null &&
+        _password.text == _confirmPassword.text;
+
+    if (_isFormValid != isValid) {
+      setState(() => _isFormValid = isValid);
+    }
+  }
+
+  @override
+  void dispose() {
+    _fullName.dispose();
+    _userName.dispose();
+    _email.dispose();
+    _password.dispose();
+    _confirmPassword.dispose();
+    super.dispose();
   }
 
   @override
@@ -81,7 +115,15 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ],
               ),
-              child: FieldSection(role: widget.bloc.initialParams.role),
+              child: FieldSection(
+                role: widget.bloc.initialParams.role,
+                fullName: _fullName,
+                userName: _userName,
+                email: _email,
+                password: _password,
+                confirmPassword: _confirmPassword,
+                isFormValid: _isFormValid,
+              ),
             ),
           ),
         ],
@@ -92,87 +134,118 @@ class _RegisterViewState extends State<RegisterView> {
 
 class FieldSection extends StatelessWidget {
   final UserRole? role;
-  const FieldSection({super.key, this.role});
+  final TextEditingController fullName;
+  final TextEditingController userName;
+  final TextEditingController email;
+  final TextEditingController password;
+  final TextEditingController confirmPassword;
+  final bool isFormValid;
+  const FieldSection({
+    super.key,
+    this.role,
+    required this.fullName,
+    required this.userName,
+    required this.email,
+    required this.password,
+    required this.confirmPassword,
+    required this.isFormValid,
+  });
 
   @override
   Widget build(BuildContext context) {
-    log(role.toString());
-    return ListView(
-      children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: 'Sign up to',
-                style: context.headingText.copyWith(
-                  fontWeight: FontWeight.w400,
+    return Form(
+      child: ListView(
+        children: [
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Sign up to',
+                  style: context.headingText.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              TextSpan(
-                text: ' Furry Sitterz',
-                style: context.headingText.copyWith(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32,
+                TextSpan(
+                  text: ' Furry Sitterz',
+                  style: context.headingText.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 32,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
-        ),
-        10.heightBox,
-        Content(
-          data:
-              'To find the best pet sitters in town and ensure exceptional care for your pets',
-          textStyle: context.bodyText,
-        ),
-        20.heightBox,
-        LabelTextField(
-          // labelText: 'Email',
-          validator: (value) =>
-              Validator.validateFullName(value ?? "", 'joe john'),
-          hintText: "Name",
-          validateWhileTyping: true,
-        ),
-        20.heightBox,
-        LabelTextField(
-          // labelText: 'Email',
-          validator: (value) =>
-              Validator.validateFullName(value ?? "", 'Eg: jeojohn'),
-          hintText: "Username",
-          validateWhileTyping: true,
-        ),
-        20.heightBox,
-        LabelTextField(
-          // labelText: 'Email',
-          validator: (value) => Validator.validateEmail(value ?? ""),
-          hintText: "Email",
-          validateWhileTyping: true,
-        ),
-        20.heightBox,
-        LabelTextField(
-          // labelText: 'Email',
-          validator: (value) => Validator.validatePassword(value ?? ""),
-          hintText: "Password",
-          validateWhileTyping: true,
-        ),
-        20.heightBox,
-        LabelTextField(
-          // labelText: 'Email',
-          validator: (value) => Validator.validatePassword(value ?? ""),
-          hintText: "Re-type Password",
-          validateWhileTyping: true,
-        ),
-        50.heightBox,
-        AppButton.textButton(
-          onTap: () => role == UserRole.petSitter
-              ? context.pushNamed(AppRouteNames.sittersProfileSetup)
-              : null,
-          title: 'Next',
-          fontColor: AppColor.black20,
-          buttonColor: AppColor.appButton,
-          radius: 24,
-        ),
-      ],
+          10.heightBox,
+          Content(
+            data:
+                'To find the best pet sitters in town and ensure exceptional care for your pets',
+            textStyle: context.bodyText,
+          ),
+          20.heightBox,
+          LabelTextField(
+            controller: fullName,
+            // labelText: 'Email',
+            validator: (value) =>
+                Validator.validateFullName(value ?? "", 'joe john'),
+            hintText: "Name",
+            validateWhileTyping: true,
+          ),
+          20.heightBox,
+          LabelTextField(
+            controller: userName,
+            // labelText: 'Email',
+            validator: (value) =>
+                Validator.validateFullName(value ?? "", 'Eg: jeojohn'),
+            hintText: "Username",
+            validateWhileTyping: true,
+          ),
+          20.heightBox,
+          LabelTextField(
+            controller: email,
+            // labelText: 'Email',
+            validator: (value) => Validator.validateEmail(value ?? ""),
+            hintText: "Email",
+            validateWhileTyping: true,
+          ),
+          20.heightBox,
+          LabelTextField(
+            controller: password,
+            // labelText: 'Email',
+            validator: (value) => Validator.validatePassword(value ?? ""),
+            hintText: "Password",
+            validateWhileTyping: true,
+          ),
+          20.heightBox,
+          LabelTextField(
+            controller: confirmPassword,
+            // labelText: 'Email',
+            validator: (value) {
+              final passwordError = Validator.validatePassword(value ?? '');
+              if (passwordError != null) return passwordError;
+              if (value != password.text) return 'Passwords do not match';
+              return null;
+            },
+            hintText: "Re-type Password",
+            validateWhileTyping: true,
+          ),
+          50.heightBox,
+          AppButton(
+            
+            onTap: isFormValid && role == UserRole.petSitter
+                ? () => context.pushNamed(AppRouteNames.sittersProfileSetup)
+                : null,
+            isDisable: !isFormValid,
+            
+            title: 'Next',
+            fontColor: AppColor.black20,
+            buttonColor: AppColor.appButton,
+            radius: 24,
+          ),
+        ],
+      ),
     );
   }
+
+  // bool checkValue()
 }
